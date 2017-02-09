@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+	<head>
+
+		<title>Editor Blocks Demo</title>
+
+		<link rel="stylesheet" type="text/css" href="https://s1.wp.com/i/fonts/merriweather/merriweather.css?v=20160210">
+		<link rel="stylesheet" type="text/css" href="css/dashicons.css">
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+
+	</head>
+	<body>
+
+		<div id="content">
+
+			<h1>Thoughts on a Visual Editor Redesign</h1>
+
+			<p><em>A text-first content block approach.</em></p>
+
+			<p>Please keep in mind that these are just my personal ideas and opinions, nothing close to something final.</p>
+
+			<img src="media/pic2.jpg" alt="" height="477" width="750">
+
+			<h2>A Note on Accessibility</h2>
+
+			<p>I hope a redesign of the editor experience to have accessibility strongly in mind. Accessibility comes hand in hand with creating something usable, whether you interact with it visually, on desktop or mobile, with the keyboard, voice, or any other input and output method. Thinking about how and when to present information and interaction methods should come first, and be independent of the type of user interface, which helps the experience become more aligned, similar and beneficial to all users. It might even make it easier to develop.</p>
+
+			<p>While thinking about a <em>visual</em> redesign for the visual editor, I've found <a href="https://www.w3.org/TR/ATAG20/#part_a">people</a> are trying to solve very similar issues for, e.g., screen readers. Thinking from such a perspective can trigger realisations that are useful for visual interfaces too.</p>
+
+			<p>With this in mind, let's go over some possible scenarios.</p>
+
+			<p>There are roughly three kind of blocks.</p>
+
+			<h2>Object Blocks</h2>
+
+			<ul>
+				<li>They cannot contain any other content blocks.</li>
+				<li>Ideally these blocks should be alignable.</li>
+				<li>Examples: images, galleries, audio, video, iframes, horizontal rules.</li>
+			</ul>
+
+			<p>This type of block is arguably the easiest to handle. Interactions with these can usually be split in two: default interactions (like playing a video) and actions that change the object based on the available options.</p>
+
+			<p>Similarly, if I use a screenreader, I expect there options to be available for both interacting with the video and altering it. That last option may or may not need to be wrapped in an extra step if too many controls are available. E.g. "Press X to access controls to alter this video."</p>
+
+			<p>Ideally, any controls added to objects inside the editor should be in relation to the other content. Maybe options to align or move an image should be given, but not to edit the image itself. I think most objects could therefore have the exact same controls: align, move, edit, and remove. Some blocks could choose to have nested elements though, such as galleries, so maybe in these cases one should be allowed to alter the composition within the editor.</p>
+
+			<p>Today, WordPress already handles some of these object blocks quite well by showing a contextual toolbar.</p>
+
+			<p>[<a href="https://docs.google.com/document/d/1JadI_UuUSZ9oCqNeIzpRv0_jkFX2agH3WIER3x9XGW0/edit">...</a>]</p>
+
+		</div>
+
+		<script src="node_modules/tinymce/tinymce.min.js"></script>
+		<script src="node_modules/tinymce/plugins/lists/plugin.min.js"></script>
+		<script src="node_modules/tinymce/plugins/paste/plugin.min.js"></script>
+
+		<script src="js/tinymce/block.js"></script>
+		<script src="js/tinymce/new.js"></script>
+		<script src="js/tinymce/formatting.js"></script>
+		<script src="js/tinymce/clean.js"></script>
+		<script src="js/tinymce/toolbar.js"></script>
+		<script src="js/tinymce/wplink.js"></script>
+		<script src="js/tinymce/wptextpattern.js"></script>
+
+		<script src="js/index.js"></script>
+
+	</body>
+</html>
