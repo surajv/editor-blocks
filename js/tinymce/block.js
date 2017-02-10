@@ -116,7 +116,9 @@
 
 				var range = editor.selection.getRng()
 
-				if ( ! empty && editor.dom.isBlock( range.startContainer ) && editor.dom.isBlock( range.endContainer ) ) {
+				if ( ! range.collapsed && ! empty &&
+					editor.dom.isBlock( range.startContainer ) &&
+					editor.dom.isBlock( range.endContainer ) ) {
 					paragraphBar.reposition();
 				} else {
 					paragraphBar.hide();
