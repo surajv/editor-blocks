@@ -220,6 +220,23 @@
 
 				var range = editor.selection.getRng()
 
+				var $start = editor.$(editor.dom.getParent(range.startContainer, editor.dom.isBlock));
+				var $end = editor.$(editor.dom.getParent(range.endContainer, editor.dom.isBlock));
+
+
+				if ( $start[0] !== $end[0] ) {
+					$start.add( $start.nextUntil( $end ) ).add( $end ).attr( 'data-mce-selected', 'block' );
+
+					editor.once('click keydown', function ( event ) {
+						if ( tinymce.util.VK.modifierPressed( event ) ) {
+							return;
+						}
+
+						editor.$('*[data-mce-selected="block"]').removeAttr('data-mce-selected');
+						editor.nodeChanged();
+					} );
+				}
+
 				if ( editor.$( element ).attr( 'data-mce-selected' ) === 'block' ) {
 					blockSelection = true;
 
@@ -273,6 +290,10 @@
 					} );
 				}, true );
 			} );
+		} );
+
+		editor.on( 'init', function() {
+				editor.focus();
 		} );
 	} );
 } )( window.tinymce );
