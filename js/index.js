@@ -70,7 +70,7 @@
 				match: function( element ) {
 					return element.nodeName === 'PRE';
 				},
-				buttons: [ 'removepreformatted' ],
+				buttons: [ 'syntax', 'removepreformatted' ],
 				icon: 'editor-code'
 			}
 		},

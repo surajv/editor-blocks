@@ -62,6 +62,11 @@
 				cmd: 'removepreformatted'
 			} );
 
+			editor.addButton( 'syntax', {
+				text: 'syntax',
+				onclick: function() {}
+			} );
+
 			editor.addCommand( 'removeblockquote', function() {
 				editor.formatter.remove( 'blockquote' );
 				editor.nodeChanged();
@@ -70,6 +75,27 @@
 			editor.addButton( 'removeblockquote', {
 				icon: 'dashicons dashicons-no-alt',
 				cmd: 'removeblockquote'
+			} );
+
+			editor.addCommand( 'alignleft', function() {
+				editor.formatter.remove( 'alignleft' );
+				editor.formatter.remove( 'aligncenter' );
+				editor.formatter.remove( 'alignright' );
+
+				editor.nodeChanged();
+			});
+
+			editor.addButton( 'alignleft', {
+				icon: 'dashicons dashicons-editor-alignleft',
+				cmd: 'alignleft',
+				onpostrender: function() {
+						var button = this;
+
+						editor.on( 'nodechange', function( event ) {
+							button.active( ! editor.formatter.matchNode( element, 'aligncenter' ) &&
+								! editor.formatter.matchNode( element, 'alignright' ) );
+						} );
+					}
 			} );
 
 			editor.addCommand( 'removelist', function() {
@@ -92,9 +118,9 @@
 				tooltip: 'Add Block',
 				onClick: function() {
 					editor.$( element ).attr( 'data-mce-selected', 'block' );
-          editor.nodeChanged();
+					editor.nodeChanged();
 
-          editor.once('click keydown', function ( event ) {
+					editor.once('click keydown', function ( event ) {
 						if ( tinymce.util.VK.modifierPressed( event ) ) {
 							return;
 						}
