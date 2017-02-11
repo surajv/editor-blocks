@@ -223,6 +223,10 @@
 				var $start = editor.$(editor.dom.getParent(range.startContainer, editor.dom.isBlock));
 				var $end = editor.$(editor.dom.getParent(range.endContainer, editor.dom.isBlock));
 
+				// Selection only has the start of a new block.
+				if ( $end[0] === range.endContainer && range.endOffset === 0 ) {
+					$end = $end.prev();
+				}
 
 				if ( $start[0] !== $end[0] ) {
 					$start.add( $start.nextUntil( $end ) ).add( $end ).attr( 'data-mce-selected', 'block' );
